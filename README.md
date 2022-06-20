@@ -2,6 +2,13 @@
 
 This project is a simple book tracking app. Users are able to keep track of books they want to read, are currently reading, and have finished reading.
 
+## Getting Started
+
+    1. Clone the repository
+    2. Run `npm install`
+    3. Run `npm start`
+    4. Open the browser and navigate to http://localhost:3000
+
 ## Backend Server
 
 A backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods needed to perform necessary operations on the backend:
