@@ -1,8 +1,17 @@
 import React from 'react'
+import Shelf from './Shelf';
 
 function Shelves() {
+    const currentlyReading = [];
+    const wantToRead = [];
+    const read = [];
+
   return (
-    <div>Shelves</div>
+    <div>
+        <Shelf title="Currently Reading" books={currentlyReading} />
+        <Shelf />
+        <Shelf />
+    </div>
   )
 }
 
