@@ -1,7 +1,7 @@
 import React from 'react'
 import Shelf from './Shelf';
 
-function Shelves() {
+function Shelves({ books }) {
     const currentlyReading = [];
     const wantToRead = [];
     const read = [];
