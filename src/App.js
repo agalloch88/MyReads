@@ -113,7 +113,7 @@ function App() {
           <Header />
           <div className="list-books-content">
             <div>
-              <Shelves />
+              <Shelves books={books} />
             </div>
           </div>
           <div className="open-search">
