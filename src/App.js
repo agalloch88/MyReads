@@ -6,7 +6,7 @@ import Shelves from './components/Shelves';
 function App() {
   const [showSearchPage, setShowSearchpage] = useState(false);
 
-  const books = [
+  const [books, setBooks] = useState([
     {
       cover: {
         width: 128,
@@ -84,7 +84,7 @@ function App() {
       author: "Mark Twain",
       shelf: "read",
     },
-  ];
+  ]);
 
   return (
     <div className="app">
