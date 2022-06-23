@@ -10,7 +10,7 @@ function Book({book, changeShelf}) {
             width: 128,
             height: 193,
             backgroundImage:
-              `${book.cover.backgroundImage}`,
+              `url(${book.imageLinks.thumbnail})`,
           }}
         ></div>
         <div className="book-shelf-changer">
@@ -26,7 +26,7 @@ function Book({book, changeShelf}) {
         </div>
       </div>
       <div className="book-title">{book.title}</div>
-      <div className="book-authors">{book.author}</div>
+      <div className="book-authors">{book.authors}</div>
     </div>
   );
 }
