@@ -6,6 +6,7 @@ import Shelves from './components/Shelves';
 function App() {
   const starterBooks = [
     {
+      id: "1",
       cover: {
         width: 128,
         height: 193,
@@ -17,6 +18,7 @@ function App() {
       shelf: "currentlyReading",
     },
     {
+      id: "2",
       cover: {
         width: 128,
         height: 188,
@@ -28,6 +30,7 @@ function App() {
       shelf: "currentlyReading",
     },
     {
+      id: "3",
       cover: {
         width: 128,
         height: 193,
@@ -39,6 +42,7 @@ function App() {
       shelf: "wantToRead",
     },
     {
+      id: "4",
       cover: {
         width: 128,
         height: 192,
@@ -50,6 +54,7 @@ function App() {
       shelf: "wantToRead",
     },
     {
+      id: "5",
       cover: {
         width: 128,
         height: 192,
@@ -61,6 +66,7 @@ function App() {
       shelf: "read",
     },
     {
+      id: "6",
       cover: {
         width: 128,
         height: 174,
@@ -72,6 +78,7 @@ function App() {
       shelf: "read",
     },
     {
+      id: "7",
       cover: {
         width: 128,
         height: 192,
@@ -88,12 +95,13 @@ function App() {
 
   const [books, setBooks] = useState(starterBooks);
 
-  const changeShelf = (book, shelf) => {
-    const updatedBooks = books.map(book => {
-      if (book.id === book.id) {
-        book.shelf = shelf;
+  const changeShelf = (book, shelfTo) => {
+    const updatedBooks = books.map(bookToMove => {
+      if (bookToMove.id === book.id) {
+        book.shelf = shelfTo;
         return book;
       }
+      return bookToMove;
     })
     setBooks(updatedBooks);
   }

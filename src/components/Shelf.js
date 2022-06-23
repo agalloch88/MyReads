@@ -8,7 +8,7 @@ function Shelf({ books, title, changeShelf }) {
       <div className="bookshelf-books">
         <ol className="books-grid">
           {books.map((book) => (
-            <li key={book.name}>
+            <li key={book.id}>
               <Book book={book} changeShelf={changeShelf} />
             </li>
           ))}
