@@ -4,9 +4,7 @@ import Header from "./components/Header";
 import Shelves from './components/Shelves';
 
 function App() {
-  const [showSearchPage, setShowSearchpage] = useState(false);
-
-  const [books, setBooks] = useState([
+  const starterBooks = [
     {
       cover: {
         width: 128,
@@ -84,7 +82,21 @@ function App() {
       author: "Mark Twain",
       shelf: "read",
     },
-  ]);
+  ] 
+
+  const [showSearchPage, setShowSearchpage] = useState(false);
+
+  const [books, setBooks] = useState(starterBooks);
+
+  const changeShelf = (book, shelf) => {
+    const updatedBooks = books.map(book => {
+      if (book.id === book.id) {
+        book.shelf = shelf;
+        return book;
+      }
+    })
+    setBooks(updatedBooks);
+  }
 
   return (
     <div className="app">
@@ -113,7 +125,7 @@ function App() {
           <Header />
           <div className="list-books-content">
             <div>
-              <Shelves books={books} />
+              <Shelves books={books} changeShelf={changeShelf} />
             </div>
           </div>
           <div className="open-search">
