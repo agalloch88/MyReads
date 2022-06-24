@@ -3,14 +3,15 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Shelves from "./components/Shelves";
 import * as BooksAPI from "./BooksAPI";
+import Book from "./components/Book";
 
 function App() {
-
   const [showSearchPage, setShowSearchpage] = useState(false);
 
   const [books, setBooks] = useState([]);
+  const [searchBooks, setSearchBooks] = useState([]);
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     BooksAPI.getAll().then((data) => {
@@ -18,6 +19,18 @@ function App() {
       setBooks(data);
     });
   }, []);
+
+  useEffect(() => {
+    if (search) {
+      BooksAPI.search(search).then((data) => {
+        if (data.error) {
+          console.log(data);
+        } else {
+          setSearchBooks(data);
+        }
+      });
+    }
+  }, [search]);
 
   const changeShelf = (book, shelfTo) => {
     const updatedBooks = books.map((bookToMove) => {
@@ -28,7 +41,7 @@ function App() {
       return bookToMove;
     });
     setBooks(updatedBooks);
-    BooksAPI.update(book, shelfTo).then(data => console.log(data));
+    BooksAPI.update(book, shelfTo).then((data) => console.log(data));
   };
 
   return (
@@ -52,7 +65,13 @@ function App() {
             </div>
           </div>
           <div className="search-books-results">
-            <ol className="books-grid"></ol>
+            <ol className="books-grid">
+              {searchBooks.map((book) => (
+                <li key={book.id}>
+                  <Book book={book} changeShelf={changeShelf} />
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       ) : (
