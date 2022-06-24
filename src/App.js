@@ -15,20 +15,28 @@ function App() {
 
   useEffect(() => {
     BooksAPI.getAll().then((data) => {
-      console.log(data);
       setBooks(data);
     });
   }, []);
 
   useEffect(() => {
+    let activeSearch = true;
     if (search) {
       BooksAPI.search(search).then((data) => {
         if (data.error) {
           console.log(data);
         } else {
-          setSearchBooks(data);
+          if (activeSearch) {
+            setSearchBooks(data);
+          }
         }
       });
+    }
+
+    return () => {
+      activeSearch = false;
+      setSearchBooks([]);
+      console.log("unmount");
     }
   }, [search]);
 
