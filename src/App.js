@@ -68,8 +68,13 @@ function App() {
       }
       return bookToMove;
     });
+    if (!mapOfIdToBooks.has(book.id)) {
+      book.shelf = shelfTo;
+      updatedBooks.push(book);
+    }
     setBooks(updatedBooks);
     BooksAPI.update(book, shelfTo).then((data) => console.log(data));
+    navigate("/");
   };
 
   return (
