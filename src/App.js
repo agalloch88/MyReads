@@ -10,6 +10,8 @@ function App() {
 
   const [books, setBooks] = useState([]);
 
+  const [search, setSearch] = useState('');
+
   useEffect(() => {
     BooksAPI.getAll().then((data) => {
       console.log(data);
@@ -44,6 +46,8 @@ function App() {
               <input
                 type="text"
                 placeholder="Search by title, author, or ISBN"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
               />
             </div>
           </div>
