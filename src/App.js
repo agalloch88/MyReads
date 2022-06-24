@@ -1,16 +1,12 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import Header from "./components/Header";
-import Shelves from "./components/Shelves";
 import * as BooksAPI from "./BooksAPI";
-import Book from "./components/Book";
-import { Route, Routes, useNavigate, Link } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Main from "./pages/Main";
 import Search from "./pages/Search";
 
 function App() {
   let navigate = useNavigate();
-  const [showSearchPage, setShowSearchpage] = useState(false);
 
   const [books, setBooks] = useState([]);
   const [searchBooks, setSearchBooks] = useState([]);
@@ -78,41 +74,24 @@ function App() {
 
   return (
     <Routes>
-      {/* Search Page */}
-      <Route exact path="/search" element={<Search />}>
-        {/* <div className="search-books">
-            <div className="search-books-bar">
-              <a
-                className="close-search"
-                onClick={() => setShowSearchpage(!showSearchPage)}
-              >
-                Close
-              </a>
-              <div className="search-books-input-wrapper">
-                <input
-                  type="text"
-                  placeholder="Search by title, author, or ISBN"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid">
-                {combinedBooks.map((book) => (
-                  <li key={book.id}>
-                    <Book book={book} changeShelf={changeShelf} />
-                  </li>
-                ))}
-              </ol>
-            </div>
-          </div> */}
-      </Route>
       {/* Main Page */}
       <Route
         exact
         path="/"
         element={<Main books={books} changeShelf={changeShelf} />}
+      />
+      {/* Search Page */}
+      <Route
+        exact
+        path="/search"
+        element={
+          <Search
+            search={search}
+            setSearch={setSearch}
+            combinedBooks={combinedBooks}
+            changeShelf={changeShelf}
+          />
+        }
       />
     </Routes>
   );
