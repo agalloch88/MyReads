@@ -4,6 +4,7 @@ import * as BooksAPI from "./BooksAPI";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Main from "./pages/Main";
 import Search from "./pages/Search";
+import { useDebounce } from "use-debounce";
 
 function App() {
   let navigate = useNavigate();
@@ -14,6 +15,7 @@ function App() {
   const [mapOfIdToBooks, setMapOfIdToBooks] = useState(new Map());
 
   const [search, setSearch] = useState("");
+  const [value] = useDebounce(search, 500);
 
   useEffect(() => {
     BooksAPI.getAll().then((data) => {
@@ -24,8 +26,8 @@ function App() {
 
   useEffect(() => {
     let activeSearch = true;
-    if (search) {
-      BooksAPI.search(search).then((data) => {
+    if (value) {
+      BooksAPI.search(value).then((data) => {
         if (data.error) {
           console.log(data);
         } else {
@@ -41,7 +43,7 @@ function App() {
       setSearchBooks([]);
       console.log("unmount");
     };
-  }, [search]);
+  }, [value]);
 
   useEffect(() => {
     const combinedBooks = searchBooks.map((book) => {
