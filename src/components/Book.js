@@ -31,4 +31,4 @@ function Book({book, changeShelf}) {
   );
 }
 
-export default Book;
+export default React.memo(Book);
