@@ -2,12 +2,18 @@ import React from "react";
 import Shelf from "./Shelf";
 
 function Shelves({ books, changeShelf }) {
-  const filter = (books) => (shelf) => books.shelf((b) => b.shelf === shelf);
-  const filterBy = filter(books);
+  // want to implement closure to make this portion more functional
+  // const filter = books => shelf => books.shelf(b => b.shelf === shelf)
+  // const filterBy = filter(books)
 
-  const currentlyReading = filterBy("currentlyReading");
-  const wantToRead = filterBy("wantToRead");
-  const read = filterBy("read");
+  // const wantToRead = filterBy('wantToRead')
+  // const currentlyReading = filterBy('currentlyReading')
+
+  const currentlyReading = books.filter(
+    (book) => book.shelf === "currentlyReading"
+  );
+  const wantToRead = books.filter((book) => book.shelf === "wantToRead");
+  const read = books.filter((book) => book.shelf === "read");
 
   return (
     <div>
